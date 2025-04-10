@@ -1,14 +1,48 @@
-Создаем базу данных в докере.
+# Проект отправки OTP кодов
+
+### Запуск:
+
+- Создаем базу данных в докере.
 
 ```sh
 docker run --name OTP_security -e POSTGRES_USER=postgres -e POSTGRES_PASSWORD=postgres -e POSTGRES_DB=security -p 5432:5432 -d postgres:13
 ```
 
-Упаковываем в докер
+#### Перед началом сборки проекта, требуется заполнить настройки email, telegram, smpp
+```yaml
+mail:
+  smtp:
+    host: smtp.gmail.com
+    port: 587
+    auth: true
+    starttls:
+      enable: true
+  username:
+    USERNAME
+  password:
+    PASS
+smpp:
+  host: smpp.example.com
+  port: 2775
+  systemId: yourSystemId
+  password: yourPassword
+  systemType: ""
+  sourceAddr: "YOUR_SENDER_ID"
+  addrTon: 1
+  addrNpi: 1
+
+telegram:
+  token: YOUR_TOKEN
+```
+
+- Запускаем проект в докере
 
 ```shell
+mvn clean install
 docker-compose -p security_otp up --build
 ```
+
+### Использование:
 
 http://localhost:8189/auth/sign-up
 запрос на регистрацию
@@ -37,7 +71,7 @@ http://172.16.1.33:8189/auth/sign-in
 eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiUk9MRV9VU0VSIiwiaWQiOiJlNWMxOGY2ZC1mYWZjLTRmMDQtYTJiYi1jM2FjM2YxOTI1ZjgiLCJlbWFpbCI6InN0cmluZzMzQG1haWwuY29uIiwic3ViIjoic3RyaW5nMzNAbWFpbC5jb24iLCJpYXQiOjE3NDQyOTA1MzIsImV4cCI6MTc0NDQzNDUzMn0.Xp6Px5G9UAX1rn0KguWoV88kD4IWvoNafMg_O5vhWdw"
 его требуется добавить в headers поле "Authorization".
 
-Далее по пунктам:
+## Далее по пунктам:
 
 - Структура приложения соответствует требованиям — 5 баллов;
     * Соответсвует.
@@ -99,7 +133,6 @@ eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiUk9MRV9VU0VSIiwiaWQiOiJlNWMxOGY2ZC1mYWZjLTRmMDQ
   "deliveryType": "FILE"
 }
   ```
-
 - Реализован механизм токенной аутентификации и авторизации — 5 баллов.
     * Реализовано.
 - Реализовано подробное покрытие всех запросов к API логами — 3 балла.
