@@ -54,7 +54,7 @@ public class UserService {
     public void getAdmin() {
         var user = getCurrentUser();
         List<User> list = repository.findAll().stream().filter(x -> x.getRole().equals(Role.ROLE_ADMIN)).toList();
-        if (list.isEmpty()) {
+        if (!list.isEmpty()) {
             throw new ExistsExeption("Пользователь Admin уже существует.");
         }
         user.setRole(Role.ROLE_ADMIN);
