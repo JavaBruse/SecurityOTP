@@ -24,13 +24,6 @@ public class OtpCode {
     @Column(name = "otp_code", nullable = false)
     private String otpCode;
 
-    @Enumerated(EnumType.STRING)
-    @Column(name = "type", nullable = false)
-    private OtpType type;
-
-    @Column(name = "date_at", nullable = false)
-    private Long dateAt;
-
     @Column(name = "date_die", nullable = false)
     private Long dateDie;
 }

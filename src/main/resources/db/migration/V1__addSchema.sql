@@ -10,8 +10,6 @@ CREATE TABLE  users (
 CREATE TABLE otp_code (
   id_user VARCHAR(255) NOT NULL PRIMARY KEY,
   otp_code VARCHAR(255) NOT NULL,
-  type VARCHAR(255) NOT NULL CHECK (type IN ('EMAIL', 'SMS', 'TELEGRAM', 'FILE')),
-  date_at BIGINT NOT NULL,
   date_die BIGINT NOT NULL,
   CONSTRAINT fk_user FOREIGN KEY (id_user) REFERENCES users(id) ON DELETE CASCADE
 );
