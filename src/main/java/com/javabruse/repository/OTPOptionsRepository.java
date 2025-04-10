@@ -6,4 +6,6 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface OTPOptionsRepository extends JpaRepository<OptionsOTP, Long> {
+    OptionsOTP findTopByOrderByIdAsc();
+
 }

@@ -1,10 +1,13 @@
 package com.javabruse.service;
 
+import com.javabruse.controllers.AdminController;
 import com.javabruse.domain.model.Role;
 import com.javabruse.domain.model.User;
 import com.javabruse.exaption.ExistsExeption;
 import com.javabruse.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -16,6 +19,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class UserService {
     private final UserRepository repository;
+    private static final Logger log = LoggerFactory.getLogger(AdminController.class);
 
     public User save(User user) {
         return repository.save(user);
@@ -54,7 +58,8 @@ public class UserService {
         var user = getCurrentUser();
         List<User> list = repository.findAll().stream().filter(x -> x.getRole().equals(Role.ROLE_ADMIN)).toList();
         if (!list.isEmpty()) {
-            throw new ExistsExeption("Пользователь Admin уже существует.");
+            log.info("Пользователь Admin уже существует.");
+            return;
         }
         user.setRole(Role.ROLE_ADMIN);
         save(user);

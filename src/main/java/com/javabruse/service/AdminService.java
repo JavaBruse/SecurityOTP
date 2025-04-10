@@ -1,5 +1,6 @@
 package com.javabruse.service;
 
+import com.javabruse.domain.dto.OtpOptionsRequest;
 import com.javabruse.domain.model.OptionsOTP;
 import com.javabruse.domain.model.User;
 import com.javabruse.repository.OTPCodeRepository;
@@ -27,12 +28,12 @@ public class AdminService {
         return otpOptionsRepository.getReferenceById(1l);
     }
 
-    public OptionsOTP setOptionsOTP(OptionsOTP optionsOTP) {
+    public OtpOptionsRequest setOptionsOTP(OtpOptionsRequest optionsOTP) {
         OptionsOTP otp = otpOptionsRepository.getReferenceById(1l);
         otp.setCountChars(optionsOTP.getCountChars());
         otp.setTimeLife(optionsOTP.getTimeLife());
         otpOptionsRepository.save(otp);
-        return otp;
+        return optionsOTP;
     }
 
     public void removeUser(String userName) {

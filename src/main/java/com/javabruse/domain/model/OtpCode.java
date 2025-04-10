@@ -3,6 +3,8 @@ package com.javabruse.domain.model;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.time.LocalDateTime;
+
 @Entity
 @Getter
 @Setter
@@ -13,17 +15,23 @@ import lombok.*;
 public class OtpCode {
 
     @Id
-    @Column(name = "id_user")
-    private String id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
-    @OneToOne
-    @MapsId
-    @JoinColumn(name = "id_user")
+    @Column(name = "code", nullable = false)
+    private String code;
+
+    @Column(name = "operation_id")
+    private String operationId;
+
+    @Column(name = "created_at", nullable = false)
+    private LocalDateTime createdAt;
+
+    @ManyToOne
+    @JoinColumn(name = "user_id")
     private User user;
 
-    @Column(name = "otp_code", nullable = false)
-    private String otpCode;
-
-    @Column(name = "date_die", nullable = false)
-    private Long dateDie;
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
+    private OtpState state;
 }

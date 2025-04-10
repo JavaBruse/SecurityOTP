@@ -23,5 +23,10 @@ public class OptionsOTP {
     private Long timeLife;
 
     @Column(name = "count_chars", nullable = false)
-    private Long countChars;
+    private int countChars;
+
+    @Override
+    public String toString() {
+        return "Опции ОТП {" + ", timeLife=" + timeLife + ", countChars=" + countChars + '}';
+    }
 }

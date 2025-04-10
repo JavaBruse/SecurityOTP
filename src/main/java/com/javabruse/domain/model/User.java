@@ -34,8 +34,11 @@ public class User implements UserDetails {
     @Column(name = "role", nullable = false)
     private Role role;
 
-    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
-    private OtpCode otpCode;
+    @Column(name = "phone", nullable = false)
+    private String phoneNumber;
+
+    @Column( name = "telegram", nullable = false)
+    private String telegram;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

@@ -33,3 +33,26 @@ token:
   signing:
     key: 2d114e9acf363847bacd697a4ca55033d6ad478ee0c130f6de2a7a75b15939e4dd242370a1c132d9e2c184c9e65d9424b4aa828caf55
 
+mail:
+  smtp:
+    host: smtp.gmail.com
+    port: 587
+    auth: true
+    starttls:
+      enable: true
+  username:
+    USERNAME
+  password:
+    PASS
+smpp:
+  host: smpp.example.com
+  port: 2775
+  systemId: yourSystemId
+  password: yourPassword
+  systemType: ""
+  sourceAddr: "YOUR_SENDER_ID"
+  addrTon: 1
+  addrNpi: 1
+
+telegram:
+  token: YOUR_TOKEN
