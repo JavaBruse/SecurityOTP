@@ -23,7 +23,6 @@ public class UserService {
 
     public User create(User user) {
         if (repository.existsByUsername(user.getUsername())) {
-            // Заменить на свои исключения
             throw new ExistsExeption("Пользователь с \"" + user.getUsername() + "\" таким именем уже существует");
         }
 
