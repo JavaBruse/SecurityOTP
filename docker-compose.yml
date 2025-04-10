@@ -1,0 +1,14 @@
+version: '3.8'
+
+services:
+  security:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: security
+    image: security
+    restart: unless-stopped
+    expose:
+      - "8189:8189"
+
+
