@@ -35,7 +35,12 @@ telegram:
   token: YOUR_TOKEN
 ```
 
-- Запускаем проектa в докере
+- Запускаем проектa через командную строку:
+```shell
+mvn clean install
+java -jar .\target\SecurityOTP-1.0.jar 
+```
+Для запуска в докер контейнере:
 Перед сборкой, требуется изменить адреса, тестировал только на intellijIdea.
 ```shell
 mvn clean install
