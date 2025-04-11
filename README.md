@@ -35,8 +35,8 @@ telegram:
   token: YOUR_TOKEN
 ```
 
-- Запускаем проект в докере
-
+- Запускаем проектa в докере
+Перед сборкой, требуется изменить адреса, тестировал только на intellijIdea.
 ```shell
 mvn clean install
 docker-compose -p security_otp up --build
